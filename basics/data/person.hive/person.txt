@@ -1,0 +1,3 @@
+Barack,Obama,53
+George,Bush,68
+Bill,Clinton,68
