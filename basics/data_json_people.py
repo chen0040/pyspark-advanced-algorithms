@@ -11,14 +11,14 @@ def patch_path(*paths):
 def main():
     sys.path.append(patch_path('..'))
     from pyspark_alg.os_utils import set_hadoop_home_dir, is_os_windows
-    from pyspark_alg.spark_utils import create_spark_context
+    from pyspark_alg.spark_utils import create_spark_session
 
     if is_os_windows():
         set_hadoop_home_dir(patch_path('..', 'win-bin'))
 
     logging.basicConfig(level=logging.WARN)
 
-    spark = create_spark_context('JsonPerson')
+    spark = create_spark_session('JsonPerson')
 
     df = spark.read.json(patch_path('data/person.json'))
     data = df.collect()
