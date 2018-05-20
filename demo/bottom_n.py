@@ -23,8 +23,6 @@ def main():
     for data in res:
         print(data)
 
-    print('Session created')
-
 
 if __name__ == '__main__':
     main()

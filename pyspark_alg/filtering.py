@@ -1,11 +1,10 @@
-def top_n(spark_context, pair_rdd, n):
+def top_n(spark_context, pair_rdd, n, key_func=lambda x: x[1]):
     n_broadcast = spark_context.broadcast(n)
 
     def f1(iterator):
         temp = [(key, value) for (key, value) in iterator]
-        temp.sort(key=lambda x: x[1], reverse=True)
+        temp.sort(key=key_func, reverse=True)
         local_n = n_broadcast.value
-        print(local_n)
         result = list()
         k = min(local_n, len(temp))
         for item in temp[:k]:
@@ -16,14 +15,13 @@ def top_n(spark_context, pair_rdd, n):
     return res
 
 
-def bottom_n(spark_context, pair_rdd, n):
+def bottom_n(spark_context, pair_rdd, n, key_func=lambda x: x[1]):
     n_broadcast = spark_context.broadcast(n)
 
     def f1(iterator):
         temp = [(key, value) for (key, value) in iterator]
-        temp.sort(key=lambda x: x[1], reverse=False)
+        temp.sort(key=key_func, reverse=False)
         local_n = n_broadcast.value
-        print(local_n)
         result = list()
         k = min(local_n, len(temp))
         for item in temp[:k]:
