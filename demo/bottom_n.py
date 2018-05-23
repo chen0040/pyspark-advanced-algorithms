@@ -1,6 +1,7 @@
 import sys
 import os
 
+
 def patch_path(*paths):
     return os.path.join(os.path.dirname(__file__), *paths)
 
@@ -16,7 +17,8 @@ def main():
 
     spark = create_local_spark_context('topN')
 
-    pair_rdd = spark.parallelize([('Chair', 1000), ('Table', 3000), ('Chair2', 2000), ('Table2', 6000), ('Bed', 2000), ('Bed2', 4000)])
+    pair_rdd = spark.parallelize(
+        [('Chair', 1000), ('Table', 3000), ('Chair2', 2000), ('Table2', 6000), ('Bed', 2000), ('Bed2', 4000)])
 
     res = bottom_n(spark, pair_rdd, n=3)
 

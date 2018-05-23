@@ -7,6 +7,8 @@ Implemented algorithms include:
 * Bottom-N
 * Left Outer Join
 * Find Common Friends between Any Two Persons
+* Link Recommendation: Find a Person C who befriend with person A and can help A to link Person B who befriended with C
+ 
 
 * Usage
 
